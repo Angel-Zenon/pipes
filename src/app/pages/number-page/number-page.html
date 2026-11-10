@@ -1,0 +1,25 @@
+<section class="py-5">
+    <h1 class="text-5xl font-bold">Pipes Numericos</h1>
+    <h3 class="font-bold mt-3">Pipes incluidos en angular</h3>
+
+</section>
+
+<div class="stats stats-horizontal shadow w-full">
+  <div class="stat">
+    <div class="stat-title">Number:"1.2-2" </div>
+    <div class="stat-value"> {{ totalSells() | number:"1.2-2" }} </div>
+    <div class="stat-desc">{{ totalSells() }}</div>
+  </div>
+
+  <div class="stat">
+    <div class="stat-title">Percent Pipe</div>
+    <div class="stat-value"> {{ discount() | percent:'1.2-2' }} </div>
+    <div class="stat-desc">{{ discount() }}</div>
+  </div>
+  <div class="stat">
+    <div class="stat-title">Currency</div>
+    <div class="stat-value"> {{ totalSells() | currency:'CAD' : 'symbol-narrow' : '1.2-2' }} </div>
+    <div class="stat-desc">{{ totalSells() }}</div>
+  </div>
+
+</div>

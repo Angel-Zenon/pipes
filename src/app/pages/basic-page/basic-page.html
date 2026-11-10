@@ -1,0 +1,53 @@
+<section class="py-5">
+    <h1 class="text-5xl font-bold">Pipes basicos</h1>
+    <h3 class="font-bold mt-3">Pipes incluidos en angular</h3>
+
+</section>
+
+<div class="stats stats-horizontal shadow w-full">
+  <div class="stat">
+    <div class="stat-title">Lowercase Pipe</div>
+    <div class="stat-value"> {{ nameUpper() | lowercase }} </div>
+    <div class="stat-desc">{{ nameUpper() }}</div>
+  </div>
+
+  <div class="stat">
+    <div class="stat-title">Uppercase Pipe</div>
+    <div class="stat-value"> {{ nameLower() | uppercase }} </div>
+    <div class="stat-desc">{{ nameLower() }}</div>
+  </div>
+
+  <div class="stat">
+    <div class="stat-title">TitelCase pipe</div>
+    <div class="stat-value"> {{ fullname() | titlecase }} </div>
+    <div class="stat-desc">{{ fullname() }}</div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<div class="stats stats-horizontal shadow w-full">
+  <div class="stat">
+    <div class="stat-title">Date|Short|GMT-6</div>
+    <div class="stat-value"> {{ customDate() | date:'short':'GMT-6' }} </div>
+    <div class="stat-desc">{{ customDate() }}</div>
+  </div>
+
+  <div class="stat">
+    <div class="stat-title">Date|Long|GMT-6</div>
+    <div class="stat-value"> {{ customDate() | date:'long':'GMT-6' }} </div>
+    <div class="stat-desc">{{ customDate() }}</div>
+  </div>
+
+  
+</div>
+
+<div class=" flex flex-row mt-3 gap-2">
+  <h1 class="text-2x font-bold">Current local: 
+      <span class="badge badge-accent">  {{ localService.getLocal() }} </span>
+  </h1>
+
+  <button (click)="changeLocal('fr')"  class="btn btn-info">Mudar para o francai</button>
+  <button (click)="changeLocal('en')" class="btn btn-info">Change to English</button>
+  <button (click)="changeLocal('es-MX')" class="btn btn-info">Cambiar a Español MX </button>
+</div>
