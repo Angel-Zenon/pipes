@@ -4,7 +4,9 @@
 </section>
 
 <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3">
-    <app-card title="i18nSelectPipe">
-        <p>Contenido del padre</p>
-    </app-card>
+    <card title="i18nSelectPipe">
+        <p>Saludos a: {{ client().name }}, es un placer 
+            {{ client().gender | i18nSelect: invitationMap }} en nuestro equipo </p>
+        <button  (click)="chageClient()" class=" btn btn-primary"> Cambiar invitación </button>
+    </card>
 </div>

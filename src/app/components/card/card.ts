@@ -1,11 +1,10 @@
 import { Component, input } from '@angular/core';
 
 @Component({
-  selector: 'app-card',
+  selector: 'card',
   imports: [],
   templateUrl: './card.html'
 })
 export class Card {
   title = input.required<string>();
-
 }
