@@ -3,10 +3,66 @@
     <h3 class="text-2xl font-thin">Angular Pipes</h3>
 </section>
 
-<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3">
+<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
     <card title="i18nSelectPipe">
         <p>Saludos a: {{ client().name }}, es un placer 
             {{ client().gender | i18nSelect: invitationMap }} en nuestro equipo </p>
         <button  (click)="chageClient()" class=" btn btn-primary"> Cambiar invitación </button>
+    </card>
+    <card title="I18nPluralPipe">
+        <p>
+            Actualmente {{ clients().length | i18nPlural: clientsMap() }}
+        </p>
+        <button
+        [disabled]="clients().length === 0"
+        (click)="deleteClient()" class=" btn btn-primary"> Borrar cliente </button>
+    </card>
+    <card title="SlicePipe">
+        <b>Original</b>
+        <p class="text-secondary">
+            {{ clients().join(', ') }}
+        </p>
+        <!-- slice sirve para cortar un arreglo, pasamos los indices de referencia -->
+        <b class="mt-2 ">Slice penultimo:ultimo</b>
+        <p class="text-indigo-400">
+            {{ clients() | slice:clients().length -1 : clients().length}}  <!-- aca estamos obteniendo el ultimo elemento -->
+        </p>
+    </card>
+
+    <card title="JsonPipe">
+        <pre class="text-primary"> {{ clients()| json }} </pre>
+        <p class="text-primary"> {{ clients().join(', ') | json}} </p>
+
+    </card>
+    <card title="KeyValuePipe">
+        <pre class="text-primary"> {{ profile  }} </pre>
+        <ul>
+            @for (property of profile | keyvalue; track property) {
+                <li>
+                    <span class="text-indigo-600">
+                        {{ property.key | titlecase}} : 
+                    </span>
+                    <span class="text-primary">
+                        {{ property.value  }}
+                    </span>
+                </li>
+            }
+
+        </ul>
+
+    </card>
+
+    <card title="AsyncPipe" >
+
+        @if ( promiseValue | async;as value) {
+            <p class="text-violet-500">
+                {{ value }}
+        |   </p>
+        }
+    </card>
+
+    <card title="Observable with async">
+        {{ myObservableTimer  | async}}
+
     </card>
 </div>
