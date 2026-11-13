@@ -1,1 +1,81 @@
-<p>custom-page works!</p>,
+<section class="py-5">
+  <h1 class="text-5xl font-bold">Pipes personalizados</h1>
+  <h3 class="font-bold mt-3">Pipes personalizados en angular</h3>
+</section>
+
+<div class="grid grid-cols-2 gap-3">
+  
+  <div class="stats shadow">
+    <div class="stat">
+      <div class="stat-title">ToggleCase Pipe : Lowercase</div>
+      <div class="stat-value"> {{ name() | toggleCase:toUpper()}} </div>
+      <div class="stat-desc"> {{ name() }} </div>
+      <button class="btn btn-ghost mt-3" (click)="switchUpper()" >
+        Toggle case
+      </button>
+    </div>
+  </div>
+  
+ 
+  
+</div>
+
+<div class="divider"></div>
+
+<section>
+  <h1>Pipes personalizados en acción</h1>
+
+  <div class="flex gap-2 justify-end w-full">
+
+    <button class="btn btn-primary">Por Nombre</button>
+    <button class="btn btn-info">Por Volar</button>
+    <button class="btn btn-success">Por Color</button>
+    <button class="btn btn-accent">Por Creador</button>
+  </div>
+</section>
+
+<section class="overflow-x-auto w-full">
+  <table class="table table-s">
+    <!-- head -->
+    <thead>
+      <tr>
+        <th></th>
+        <th>Name</th>
+        <th>Can Fly</th>
+        <th>Color</th>
+        <th>Creator</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- row 1 -->
+      @for (hero of heroes(); track hero.id) {
+        <tr>
+          <td> {{ hero.id }} </td>
+          <td> {{ hero.name }} </td>
+          <td> 
+            <span 
+            class="text-xs w-44"
+            [class.text-secondary]="hero.canFly"
+            [class.text-info]="!hero.canFly"
+            >
+
+              {{ hero.canFly  | canFly }} 
+            </span>
+          </td>
+          <td>
+            <span 
+            [style.color]="color[hero.color]"  
+            > 
+              {{ hero.color | heroColor}} 
+            </span>
+          </td>
+          <td> {{ hero.creator | heroCreator }} </td>
+        </tr>
+
+      }
+
+      <!-- row 2 -->
+      
+    </tbody>
+  </table>
+</section>
