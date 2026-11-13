@@ -23,12 +23,26 @@
 <div class="divider"></div>
 
 <section>
-  <h1>Pipes personalizados en acción</h1>
-
+  <h1>Filtrando por {{ searchCritery() }}  </h1>
+  <label class="input">
+    <svg class="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+      <g
+        stroke-linejoin="round"
+        stroke-linecap="round"
+        stroke-width="2.5"
+        fill="none"
+        stroke="currentColor"
+      >
+        <circle cx="11" cy="11" r="8"></circle>
+        <path d="m21 21-4.3-4.3"></path>
+      </g>
+    </svg>
+    <input #txtval (input)="searchCritery.set(txtval.value)" type="search" class="grow" placeholder="Search" />
+  </label>  
   <div class="flex gap-2 justify-end w-full">
 
-    <button class="btn btn-primary">Por Nombre</button>
-    <button class="btn btn-info">Por Volar</button>
+    <button (click)="orderCritery.set('name')" class="btn btn-primary">Por Nombre</button>
+    <button (click)="orderCritery.set('canFly')" class="btn btn-info">Por Volar</button>
     <button class="btn btn-success">Por Color</button>
     <button class="btn btn-accent">Por Creador</button>
   </div>
@@ -48,7 +62,7 @@
     </thead>
     <tbody>
       <!-- row 1 -->
-      @for (hero of heroes(); track hero.id) {
+      @for (hero of heroesOrdered(); track hero.id) {
         <tr>
           <td> {{ hero.id }} </td>
           <td> {{ hero.name }} </td>

@@ -1,5 +1,5 @@
 import { LowerCasePipe, TitleCasePipe, UpperCasePipe } from '@angular/common';
-import { Component, signal } from '@angular/core';
+import { Component, computed, signal } from '@angular/core';
 import { ToggleCasePipe } from '../../pipes/toggle-case.pipe';
 import { Hero, ColorMap } from '../../interfaces/hero';
 import { heroes } from '../../data/hero';
@@ -21,4 +21,22 @@ export default class CustomPage {
   }
 
   heroes = signal<Hero[]>(heroes);
+  searchCritery = signal<string>('')
+  orderCritery = signal<keyof Hero | null>(null);
+
+  heroesFiltered = computed( () => {
+    if (this.searchCritery() === '') return this.heroes();
+    return this.heroes().filter( hero => hero.name.toLowerCase().includes(this.searchCritery()))
+  })
+
+
+  heroesOrdered = computed( () => {
+    if (!this.orderCritery()) return this.heroesFiltered();
+    
+    switch( this.orderCritery() ) {
+      case 'name' : return this.heroesFiltered().sort( (a,b) => a.name.localeCompare(b.name)  );
+      case 'canFly':  return this.heroesFiltered().sort( (a, b) => (a.canFly === b.canFly) ? 0 : a.canFly ? -1 : 1 )
+      default : return this.heroesFiltered() ;
+    }
+  } )
 }
